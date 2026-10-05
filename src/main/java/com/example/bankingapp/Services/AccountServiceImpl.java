@@ -63,11 +63,10 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    // ICI : on ajoute
-    public List<BankAccount> getAllAccounts() {
-        List bankAccounts = bankAccountRepository.findAll();
-        return bankAccounts.stream()
-                .map(account -> accountMapper.fromBankAccountResponseDTO(account))
+    public List<BankAccountResponseDTO> getAllAccounts() {
+        return bankAccountRepository.findAll()
+                .stream()
+                .map(accountMapper::fromBankAccountResponseDTO)
                 .collect(Collectors.toList());
     }
 
